@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>studio VOID — prémiové weby & digitální zážitky</title>
+  <meta name="description" content="studio VOID — prémiové portfolio webových projektů. Černobílorůžová elegance. Jablonec nad Nisou.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #111111;
+      --text: #f5f5f5;
+      --text-muted: #a0a0a0;
+      --accent: #ff2d55;
+      --accent-soft: #ff6b8a;
+      --border: #222222;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 72px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 72px;
+      position: relative;
+    }
+    .hero-content { max-width: 720px; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.95;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .btn:hover { background: var(--accent-soft); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    section { padding: 8rem 0; }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .section-header { margin-bottom: 4rem; max-width: 600px; }
+    .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(255, 45, 85, 0.1);
+    }
+    .project-image {
+      height: 240px;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--text-muted);
+      position: relative;
+    }
+    .project-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent, var(--bg-elevated));
+    }
+    .project-info { padding: 1.75rem; }
+    .project-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-info p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag {
+      background: #1a1a1a;
+      color: var(--accent-soft);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+    .stats { display: flex; gap: 3rem; margin-top: 2rem; }
+    .stat strong { display: block; font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--accent); }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .service-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover { border-color: var(--accent); }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; }
+    .service-card p { color: var(--text-muted); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 0 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; gap: 1.5rem; }
+      section { padding: 5rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">studio <span>VOID</span></a>
+        <div class="nav-links">
+          <a href="#work">Práce</a>
+          <a href="#about">O studiu</a>
+          <a href="#services">Služby</a>
+          <a href="#contact">Kontakt</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Jablonec nad Nisou · Est. 2024</div>
+        <h1>Prémiové weby<br>s charakterem</h1>
+        <p>Navrhujeme a stavíme digitální zážitky, které mluví tichým, ale sebevědomým jazykem. Od prémiových vizitek po komplexní e-commerce a aplikace.</p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="#work" class="btn">Prohlédnout práci</a>
+          <a href="#contact" class="btn btn-outline">Začít projekt</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Vybraná práce</div>
+        <h2>Projekty, které mluví samy</h2>
+        <p>Každý web je unikátní příběh. Pečlivě vybrané realizace z posledních měsíců.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-image">Juza Crate Co.</div>
+          <div class="project-info">
+            <h3>Juza Crate Co.</h3>
+            <p>Prémiový e-shop ručně vyráběných dřevěných beden. Bilingual (EN/CS), Praha.</p>
+            <div class="tags"><span class="tag">E-commerce</span><span class="tag">Next.js</span><span class="tag">Premium</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">NORDFYR</div>
+          <div class="project-info">
+            <h3>NORDFYR</h3>
+            <p>Editorial site a commission house pro venkovní betonový stůl s grilem.</p>
+            <div class="tags"><span class="tag">Editorial</span><span class="tag">Product</span><span class="tag">Luxury</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">Halden</div>
+          <div class="project-info">
+            <h3>Halden</h3>
+            <p>Prémiový web advokátní kanceláře. Klidná typografie, tmavý základ.</p>
+            <div class="tags"><span class="tag">Law</span><span class="tag">Minimal</span><span class="tag">Dark</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">Lintea</div>
+          <div class="project-info">
+            <h3>Lintea</h3>
+            <p>Prémiový web pražského developera. Tiché domy, málo adres, dlouhá péče.</p>
+            <div class="tags"><span class="tag">Real Estate</span><span class="tag">Premium</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">Kovo Hrdlička</div>
+          <div class="project-info">
+            <h3>Kovo Hrdlička</h3>
+            <p>Prémiový web zakázkové kovovýroby, Nová Ves nad Nisou.</p>
+            <div class="tags"><span class="tag">Craft</span><span class="tag">Industrial</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">Adamovský</div>
+          <div class="project-info">
+            <h3>Adamovský oční protézy</h3>
+            <p>Prémiový web skleněných očních protéz, Jablonec nad Nisou.</p>
+            <div class="tags"><span class="tag">Healthcare</span><span class="tag">Artisan</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background: #0d0d0d;">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="eyebrow">O studiu</div>
+          <h2>Jedna vize,<br>nekonečná péče</h2>
+          <p>studio VOID vzniklo z přesvědčení, že prémiový web není o efektech, ale o přesnosti, tichu a detailu. Každý projekt bereme jako dlouhodobý vztah.</p>
+          <p>Pracujeme výhradně s klienty, kteří ocení kvalitu nad kvantitou. Od první konzultace po launch a dále.</p>
+          <div class="stats">
+            <div class="stat"><strong>40+</strong> projektů</div>
+            <div class="stat"><strong>100%</strong> spokojenost</div>
+          </div>
+        </div>
+        <div>
+          <div style="aspect-ratio:1; background: linear-gradient(135deg, #1a1a1a, #2a1518); border-radius: 16px; border: 1px solid var(--border);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Služby</div>
+        <h2>Od konceptu po launch</h2>
+      </div>
+      <div class="services">
+        <div class="service-card">
+          <h3>Prémiové weby</h3>
+          <p>Kompletní návrh a vývoj vizitek, landing pages a multi-page webů s důrazem na typografii a UX.</p>
+        </div>
+        <div class="service-card">
+          <h3>E-commerce & aplikace</h3>
+          <p>Online obchody, klientské portály a custom aplikace na míru s moderním stackem.</p>
+        </div>
+        <div class="service-card">
+          <h3>Brand & digitální identita</h3>
+          <p>Kompletní digitální přítomnost včetně UI designu, motion a obsahové strategie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background: #0d0d0d;">
+    <div class="container" style="text-align: center; max-width: 640px;">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Pojďme vytvořit něco výjimečného</h2>
+      <p style="color: var(--text-muted); margin: 1.5rem 0 2.5rem;">Napište nám o vašem projektu. Odpovídáme do 24 hodin.</p>
+      <a href="mailto:hello@studiovoid.cz" class="btn">hello@studiovoid.cz</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">studio <span style="color:var(--accent)">VOID</span></div>
+      <p>Jablonec nad Nisou · Česká republika</p>
+      <p style="margin-top: 2rem; font-size: 0.85rem;">© 2026 studio VOID. Všechna práva vyhrazena.</p>
+    </div>
+  </footer>
+</body>
+</html>
